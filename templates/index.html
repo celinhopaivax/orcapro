@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrçaPro - Formulador de Orçamentos</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-gray: #ecf0f1;
+            --dark-gray: #7f8c8d;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-symbol {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2c3e50 50%, #e74c3c 50%);
+            border-radius: 50%;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-symbol span {
+            position: relative;
+            z-index: 2;
+            background: white;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: none;
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            background-color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .logo-text span:first-child {
+            color: #2c3e50;
+        }
+        
+        .logo-text span:last-child {
+            color: #e74c3c;
+        }
+
+        #logout {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        #logout:hover {
+            background-color: #c0392b;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+            width: 100%;
+        }
+        
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        #adicionar {
+            margin-top: 1rem;
+        }
+        
+        #exportar {
+            background-color: #27ae60;
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        #exportar:hover {
+            background-color: #219955;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        #total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .action-btn {
+            color: var(--accent-color);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+            font-size: 0.9rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .form-group {
+                min-width: 100%;
+            }
+            
+            .logo-container {
+                gap: 8px;
+            }
+            
+            .logo-symbol {
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+            }
+            
+            .logo-text {
+                font-size: 1.4rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra Superior -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-symbol">
+                <span>OP</span>
+            </div>
+            <div class="logo-text">
+                <span>Orça</span><span>Pro</span>
+            </div>
+        </div>
+        <button id="logout">Sair</button>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="filtro">Filtrar Produto:</label>
+                <input type="text" id="filtro" placeholder="Digite o nome do produto">
+            </div>
+            
+            <div class="form-group">
+                <label for="produto">Selecione o Produto:</label>
+                <select id="produto">
+                    <option value="">Selecione um produto</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" min="0" step="0.01" value="1">
+            </div>
+        </div>
+
+        <button id="adicionar">Adicionar ao Orçamento</button>
+
+        <!-- Detalhes do Produto Selecionado -->
+        <section id="detalhes-produto-secao">
+            <h3>Detalhes do Produto Selecionado</h3>
+            <table id="detalhes-produto">
+                <tr>
+                    <th>Produto</th>
+                    <td id="produto-nome"></td>
+                </tr>
+                <tr>
+                    <th>Unidade</th>
+                    <td id="produto-unidade"></td>
+                </tr>
+                <tr>
+                    <th>Preço Unitário</th>
+                    <td id="produto-preco"></td>
+                </tr>
+                <tr>
+                    <th>Data Base</th>
+                    <td id="produto-data-base"></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Tabela de Orçamento -->
+        <section id="orcamento-secao">
+            <h2>Orçamento</h2>
+            <table id="tabela-orcamento">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Unidade</th>
+                        <th>Quantidade</th>
+                        <th>Preço Unitário</th>
+                        <th>Subtotal</th>
+                        <th>Data Base</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <p>Total: <span id="total">0,00</span></p>
+        </section>
+
+        <button id="exportar">Exportar Orçamento para Excel</button>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>© 2023 OrçaPro - Todos os direitos reservados</div>
+            <div>Desenvolvido por <strong>Paiva</strong></div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Função para formatar datas inválidas
+        function formatarData(data) {
+            if (!data || data === 'N/A' || data === 'NaN/NaN/NaN' || data === 'Invalid Date') {
+                return 'Data não disponível';
+            }
+            return data;
+        }
+
+        // Aplicar formatação quando os dados são carregados
+        document.addEventListener('DOMContentLoaded', function() {
+            // Formatar datas na tabela de orçamento
+            document.querySelectorAll('#tabela-orcamento td:nth-child(6)').forEach(cell => {
+                cell.textContent = formatarData(cell.textContent);
+            });
+
+            // Formatar data nos detalhes do produto
+            const dataBaseElement = document.getElementById('produto-data-base');
+            if (dataBaseElement) {
+                dataBaseElement.textContent = formatarData(dataBaseElement.textContent);
+            }
+        });
+    </script>
+</body>
+</html>

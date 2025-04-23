@@ -1,0 +1,201 @@
+/* Estilo Global */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Barra Superior */
+header {
+    background-color: #003366;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    margin-right: 10px;
+}
+
+#logout {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Página de Login */
+#login-secao {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#login-secao h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #003366;
+}
+
+#login-secao label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#login-secao input[type="text"],
+#login-secao input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#login-secao button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+#login-secao button:hover {
+    background-color: #0056b3;
+}
+
+/* Página de Orçamento */
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Dropdown melhorado */
+select {
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+option {
+    max-width: 380px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+option:hover {
+    white-space: normal;
+    overflow: visible;
+    background-color: #f0f0f0;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    word-wrap: break-word;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
+
+/* Larguras específicas para colunas */
+#tabela-orcamento th:nth-child(1) { width: 25%; }
+#tabela-orcamento th:nth-child(2) { width: 10%; }
+#tabela-orcamento th:nth-child(3) { width: 10%; }
+#tabela-orcamento th:nth-child(4) { width: 15%; }
+#tabela-orcamento th:nth-child(5) { width: 15%; }
+#tabela-orcamento th:nth-child(6) { width: 15%; }
+#tabela-orcamento th:nth-child(7) { width: 10%; }
+
+#detalhes-produto {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#detalhes-produto th {
+    width: 30%;
+    background-color: #f4f4f4;
+}
+
+#total {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #003366;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.8em;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        font-size: 0.9em;
+    }
+}
